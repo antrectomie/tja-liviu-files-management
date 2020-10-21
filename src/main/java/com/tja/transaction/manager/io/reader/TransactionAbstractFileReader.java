@@ -10,7 +10,7 @@ import static com.tja.transaction.manager.util.FileUtils.moveFileAfterRead;
 
 public abstract class TransactionAbstractFileReader implements TransactionFileReader {
 
-    private String fileName;
+    private final String fileName;
 
     TransactionAbstractFileReader(String fileName) {
         this.fileName = fileName;
@@ -21,6 +21,7 @@ public abstract class TransactionAbstractFileReader implements TransactionFileRe
         String transactionInputDir = getConfigInstance().getTransactionInputDir();
         Path filePath = Paths.get(transactionInputDir).resolve(fileName);
         try {
+            //poate fi orice cod
             TransactionReadResults transactionReadResults = readTransactions(filePath);
             // do not move the file if has transaction in error
             if (transactionReadResults.getLinesInError().isEmpty()) {

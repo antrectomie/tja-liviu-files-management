@@ -2,17 +2,18 @@ package com.tja.transaction.manager.io.reader;
 
 import com.tja.transaction.manager.model.TransactionReadResults;
 
-public class CsvTransactionFileReader implements TransactionFileReader{
+import java.nio.file.Path;
 
-    private final String fileName;
+public class CsvTransactionFileReader extends TransactionAbstractFileReader{
+
 
     CsvTransactionFileReader(String fileName) {
-        this.fileName = fileName;
+        super(fileName);
     }
 
     @Override
-    public TransactionReadResults readTransactions() {
-        System.out.println("I am reading .csv files: " + fileName);
+    protected TransactionReadResults readTransactions(Path filePath) throws Exception {
+        System.out.println("todo impleent");
         return new TransactionReadResults();
     }
 }
