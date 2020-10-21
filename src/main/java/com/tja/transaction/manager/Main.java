@@ -4,6 +4,7 @@ import com.tja.transaction.manager.config.AppConfig;
 import com.tja.transaction.manager.io.reader.TransactionFileReader;
 import com.tja.transaction.manager.io.reader.TransactionFileReaderFactory;
 import com.tja.transaction.manager.model.TransactionReadResults;
+import com.tja.transaction.manager.util.FileUtils;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -29,6 +30,9 @@ public class Main {
             TransactionFileReader transactionFileReader = TransactionFileReaderFactory.createTransactionFileReader(file.getName());
             TransactionReadResults transactionReadResults = transactionFileReader.readTransactions();
             System.out.println(transactionReadResults);
+            if (!transactionReadResults.getLinesInError().isEmpty()) {
+                FileUtils.moveFileAfterRead(file.toPath(), true);
+            }
         }
 
     }
