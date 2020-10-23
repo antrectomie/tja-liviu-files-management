@@ -30,6 +30,7 @@ public class Main {
             TransactionFileReader transactionFileReader = TransactionFileReaderFactory.createTransactionFileReader(file.getName());
             TransactionReadResults transactionReadResults = transactionFileReader.readTransactions();
             System.out.println(transactionReadResults);
+
             if (!transactionReadResults.getLinesInError().isEmpty()) {
                 FileUtils.moveFileAfterRead(file.toPath(), true);
             }
