@@ -3,6 +3,7 @@ package com.tja.transaction.manager;
 import com.tja.transaction.manager.config.AppConfig;
 import com.tja.transaction.manager.io.reader.TransactionFileReader;
 import com.tja.transaction.manager.io.reader.TransactionFileReaderFactory;
+import com.tja.transaction.manager.model.Transaction;
 import com.tja.transaction.manager.model.TransactionReadResults;
 import com.tja.transaction.manager.util.FileUtils;
 
@@ -30,6 +31,7 @@ public class Main {
             TransactionFileReader transactionFileReader = TransactionFileReaderFactory.createTransactionFileReader(file.getName());
             TransactionReadResults transactionReadResults = transactionFileReader.readTransactions();
             System.out.println(transactionReadResults);
+            List<Transaction> transactions = transactionReadResults.getTransactions();
 
             if (!transactionReadResults.getLinesInError().isEmpty()) {
                 FileUtils.moveFileAfterRead(file.toPath(), true);
